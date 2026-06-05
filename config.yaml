@@ -9,6 +9,9 @@ audio:
   play_device: plughw:CARD=sndrpigooglevoi,DEV=0
   sample_rate: 16000
   channels: 1
+  # Playback volume as a fraction of full scale (0.0–1.0). The Voice HAT v1 has
+  # no hardware mixer, so this is applied in software by scaling the samples.
+  volume: 0.3
 
 stt:
   model: whisper-1        # OpenAI speech-to-text

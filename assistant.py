@@ -47,6 +47,7 @@ def main():
         channels=audio.get("channels", 1),
     )
     play_device = audio.get("play_device", "default")
+    play_volume = audio.get("volume", 0.3)   # software gain; Voice HAT has no mixer
 
     button = Button(BUTTON_GPIO)   # pull_up=True (default) matches the HAT wiring
     led = LED(LED_GPIO)
@@ -92,7 +93,7 @@ def main():
 
                 tts.synthesize(reply, OUT_WAV)
                 led.off()
-                play_wav(OUT_WAV, device=play_device)
+                play_wav(OUT_WAV, device=play_device, volume=play_volume)
 
             except Exception as exc:
                 print("Error this turn:", exc)

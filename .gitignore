@@ -1,6 +1,15 @@
-# Secrets — never commit your API keys
+# Secrets — never commit API keys or anything holding sensitive data.
+# Keep these patterns broad on purpose: the goal is that a secret can never be
+# committed by accident, even in a file we didn't think of.
 openaiy.env
+.env
 *.env
+*.env.*
+!*.env.example      # but DO allow a committed, secret-free template
+secrets*
+*.secret
+*.key
+*.pem
 
 # Python virtual environment (created by install.sh)
 venv/
