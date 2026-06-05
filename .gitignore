@@ -5,7 +5,9 @@ openaiy.env
 .env
 *.env
 *.env.*
-!*.env.example      # but DO allow a committed, secret-free template
+# but DO allow a committed, secret-free template (negation must be its own line;
+# git does not support trailing comments on pattern lines)
+!*.env.example
 secrets*
 *.secret
 *.key
