@@ -94,6 +94,9 @@ button, talk, release.**
 Edit `config.yaml`, then `sudo systemctl restart openaiy`. The interesting bits:
 
 ```yaml
+audio:
+  volume: 0.3             # playback loudness, 0.0–1.0 (default 0.3)
+
 llm:
   model: gpt-4o-mini      # any OpenAI chat model
   system_prompt: >
@@ -106,6 +109,15 @@ tts:
 Want a different personality? Change `system_prompt`. Want a different voice?
 Change `voice`. Want smarter (pricier) answers? Point `llm.model` at a larger
 OpenAI model.
+
+### Volume
+
+The Voice HAT v1 sound card has **no hardware volume control** (`alsamixer`
+shows nothing for it), so loudness is set in software via `audio.volume` in
+`config.yaml` — a fraction from `0.0` (silent) to `1.0` (full scale), defaulting
+to `0.3`. The samples are scaled before playback, so it works on the stock card
+with no extra setup. Edit the value and `sudo systemctl restart openaiy` to
+apply.
 
 ## Managing the service
 
@@ -125,7 +137,9 @@ sudo systemctl disable openaiy    # stop it auto-starting on boot
   arecord -D plughw:CARD=sndrpigooglevoi,DEV=0 -f S16_LE -r 16000 -c 1 -d 3 t.wav
   aplay   -D plughw:CARD=sndrpigooglevoi,DEV=0 t.wav
   ```
-  Adjust levels with `alsamixer` if needed.
+- **Too quiet or too loud.** The Voice HAT v1 has no hardware mixer, so
+  `alsamixer` won't help — adjust `audio.volume` in `config.yaml` (0.0–1.0) and
+  restart the service.
 - **It says the key is missing.** Check `openaiy.env` contains a real
   `OPENAI_API_KEY=...`, then restart the service.
 - **Nothing happens on button press.** Confirm your user is in the `gpio` group
