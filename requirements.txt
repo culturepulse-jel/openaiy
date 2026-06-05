@@ -1,0 +1,11 @@
+# openaiy — Python dependencies (install into the virtual environment).
+# install.sh handles all of this for you; listed here for reference.
+
+pyyaml
+requests
+openai
+
+# Hardware support — gpiozero (button + LED), lgpio (its backend), and
+# alsa-utils (arecord/aplay) ship preinstalled on Raspberry Pi OS. If a fresh
+# image is missing them:
+#     sudo apt install -y python3-gpiozero python3-lgpio alsa-utils

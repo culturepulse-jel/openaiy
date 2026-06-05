@@ -1,0 +1,20 @@
+# Secrets — never commit your API keys
+openaiy.env
+*.env
+
+# Python virtual environment (created by install.sh)
+venv/
+.venv/
+
+# Python caches
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Temp audio
+*.wav
+/tmp/aiy_*.wav
+
+# Editor / OS cruft
+.DS_Store
+*.swp

@@ -1,0 +1,26 @@
+# openaiy — a push-to-talk voice assistant for the AIY Voice Kit v1.
+# Everything runs on OpenAI, so you only need one OPENAI_API_KEY.
+
+audio:
+  # Voice HAT sound card. Confirm the name with `arecord -l` / `aplay -l`; it
+  # usually shows up as "sndrpigooglevoi". Keep the plughw: prefix — it
+  # auto-resamples and converts channels. Do NOT change it to hw:.
+  record_device: plughw:CARD=sndrpigooglevoi,DEV=0
+  play_device: plughw:CARD=sndrpigooglevoi,DEV=0
+  sample_rate: 16000
+  channels: 1
+
+stt:
+  model: whisper-1        # OpenAI speech-to-text
+
+llm:
+  model: gpt-4o-mini      # OpenAI chat model (cheap + fast; great for voice)
+  system_prompt: >
+    You are a helpful voice assistant. Reply in one or two short, spoken-sounding
+    sentences. Do not use lists, markdown, or emoji.
+
+tts:
+  model: tts-1            # OpenAI text-to-speech
+  voice: alloy            # alloy | echo | fable | onyx | nova | shimmer
+
+max_history_turns: 8
